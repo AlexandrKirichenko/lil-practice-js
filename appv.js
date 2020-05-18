@@ -37,18 +37,22 @@ Array.prototype.multBy = function(n) {
 console.log(array.multBy(3));
 //Теперь для того, чтобы изменять эл-ты каждого массива, даже нового массива, нам не нужно вызывать новую функцию.
 
-function urlGenerator(domain) {
-    return function(url) {
-        return `https://${url}.${domain}`
+//Пишем свою функцию bind
+
+function bind(context, fn) {
+    return function(...args) {
+        fn.apply(context, args)
     }
 }
 
-const comUrl = ulrGenerator('com')
-const ruUrl = urlGenerator('ru')
+function logPerson() {
+    console.log(`Person: ${this.name}, ${this.age}, ${this.job}`)
+}
 
-console.log(comUrl('google'))
-console.log(comUrl('netflix'))
+const person1 = {name: 'Сергей', age: 22, job: 'Frontend'}
+const person2 = {name: 'Анастасия', age: 19, job: 'SMM'}
 
-console.log(ruUrl('yandex'))
-console.log(ruUrl('vkontakte'))
+
+bind(person1, logPerson)()
+bind(person2, logPerson)()
 
