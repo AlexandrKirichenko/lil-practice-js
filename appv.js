@@ -36,3 +36,19 @@ Array.prototype.multBy = function(n) {
 
 console.log(array.multBy(3));
 //Теперь для того, чтобы изменять эл-ты каждого массива, даже нового массива, нам не нужно вызывать новую функцию.
+
+function urlGenerator(domain) {
+    return function(url) {
+        return `https://${url}.${domain}`
+    }
+}
+
+const comUrl = ulrGenerator('com')
+const ruUrl = urlGenerator('ru')
+
+console.log(comUrl('google'))
+console.log(comUrl('netflix'))
+
+console.log(ruUrl('yandex'))
+console.log(ruUrl('vkontakte'))
+
